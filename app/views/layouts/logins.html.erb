@@ -1,0 +1,18 @@
+<%= stylesheet_link_tag "/assets/logins/login" %>
+
+<div id="login" style="opacity: 1; ">
+  
+  <div class="inner">
+  <div class="logo" style="opacity: 1; top: 1%; "><img src="assets/logo.jpg" alt="WebQ"></div>
+  <div class="formLogin" style="opacity: 1; left: 0px; ">
+   
+<% flash.each do |name, msg| %>
+	  <%= content_tag :div, msg, :class => "flash_#{name}" %>
+	<% end %>
+	
+	<%= yield %>
+  </div>
+</div>
+  <div class="clear"></div>
+  <div class="shadow"></div>
+</div>

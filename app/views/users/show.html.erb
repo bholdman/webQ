@@ -1,0 +1,26 @@
+<h2><%= image_tag avatar_url(@users.seKey) %> <%= "#{@users.fName} #{@users.lName}" %></h2>	
+<% if admin? %>
+	<%= link_to "Login as #{@users.fName}", become_user_path(@users.seKey) , :method => :post %> 
+	<%= form_for(@users) do |f| %>
+	  <p>
+		<%= f.label :fName, 'First Name' %>
+		<%= f.text_field :fName, :class => "text" %>
+		<%= f.label :lName, 'Last Name' %>
+		<%= f.text_field :lName, :class => "text" %>
+	  </p>
+	  <p>
+		<%= f.label :seKey, "Southeast Key (just the username, don't include @semo.edu)" %>
+		<%= f.text_field :seKey, :class => "text" %>
+	  </p>
+	  <p>
+		<%= f.label :isAdmin, 'Is Admin?' %>
+		<%= check_box_tag("isAdmin", 1, @users.isAdmin) %>
+	  </p>
+	  <p>
+		<%= f.submit :class => "submit" %>
+	  </p>
+	<% end %>
+<% end %>
+<%= render :partial => 'user_tickets'%>
+
+

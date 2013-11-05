@@ -1,0 +1,26 @@
+<div class="response">
+
+  
+  <div  class="parent_message <%= "message_admin" if response.user.isAdmin %> ">
+	<div class="avatar" style="width:85px"><%= image_tag avatar_url(response.user.seKey) %>
+	<% if response.user.isAdmin  %> 
+		<div class="thanks">
+			<%= progress_bar(response.user.thanks_count, :color => 'blue', :rounded => false, :tiny => true, :striped => true) %><p>Thanks Meter: <%= response.user.thanks_count %></p>
+			<%= button_to "Thank #{response.user.fName}", increment_thanks_path(response.user.id) , :method => :post,  :controller => "users", :remote=>false, :form_class => "thanks_form" %>
+		</div>
+	<% end %>
+	</div>
+	<div class="message_body">
+		<h3><span><em>Posted by</em> <%= response.user.fName %> <%= response.user.lName %>, <em> <%= response.created_at.to_formatted_s(:long_ordinal)%> </em></span></h3>
+		<% message_body = simple_format response.body %>
+		<%= auto_link(message_body) %>
+		<% @attachments_responses = Attachment.find_all_by_attachable_id(response.id) %>
+		<% if !(@attachments_responses.first.nil?) %>
+			<p style="font-weight:bold; color:black">Attachments:</p>
+		<% end %>
+		<% @attachments_responses.each do |attachment| %>
+			<%= link_to File.basename(attachment.file.url), attachment.file.url %> <br />
+		<% end %>
+	</div>
+  </div>
+</div>

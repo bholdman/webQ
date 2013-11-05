@@ -1,0 +1,25 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Data file name:</b>
+  <%= @asset.data_file_name %>
+</p>
+
+<p>
+  <b>Data content type:</b>
+  <%= @asset.data_content_type %>
+</p>
+
+<p>
+  <b>Data file size:</b>
+  <%= @asset.data_file_size %>
+</p>
+
+<p>
+  <b>Attachable:</b>
+  <%= @asset.attachable %>
+</p>
+
+
+<%= link_to 'Edit', edit_asset_path(@asset) %> |
+<%= link_to 'Back', assets_path %>

@@ -1,0 +1,22 @@
+<h2>All Users</h2>
+<div> <%=  link_to "Create User", new_user_path, :class => "create_button" %></div>
+<table id="client_list" class="tablesorter"> 
+	<thead> 
+		<tr> 
+			<th><%= sortable "id",  "User ID" %></th> 
+			<th><%= sortable "fName", "Name" %></th> 
+			<th><%= sortable "seKey", "Username" %></th> 
+			<th><%= sortable "isAdmin", "User Type" %></th>
+		</tr> 
+	</thead> 
+	<tbody> 
+		<% @users.each do |user| %>
+		<tr class="<%= cycle("even", "odd") %>" onclick="location.href='<%= user_path(user) %>'">
+			<td style="text-align:center;"><%= link_to user.id, user_path(user) %></td>
+			<td><%= "#{user.fName} #{user.lName}" %></td>
+			<td><%= user.seKey.downcase %></td>
+			<td><%= user.isAdmin ? "Administrator" : "User" %></td>
+		</tr>
+		<% end %>
+	</tbody>
+</table>

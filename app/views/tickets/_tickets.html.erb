@@ -1,0 +1,59 @@
+<%= hidden_field_tag :direction, params[:direction] %>
+<%= hidden_field_tag :sort, params[:sort] %>
+
+<table id="ticket_list" class="tablesorter"> 
+	<thead> 
+		<tr> 
+			<th><%= sortable "id", "ID" %></th> 
+			<th><%= sortable "user_id", "User" %></th> 
+			<th style="min-width:238px;"><%= sortable "subject", "Subject" %></th> 
+			<th><%= sortable "created_at", "Created" %></th>
+			<th>Assigned to</th> 
+			<th><%= sortable "status", "Status" %></th> 
+			<th><%= sortable "department_id", "Department" %></th> 
+		</tr> 
+	</thead> 
+	<tbody> 
+		<% @tickets.each do |ticket| %>
+			<% assigned_to = "" %>
+			<tr onclick="location.href='<%= ticket_path(ticket) %>'">
+			<td style="text-align:center;"><%= link_to "#%06d" % ticket.id, ticket_path(ticket) %></td>
+			<% ticket.assignments.each do |assignment| %>
+				<% if assignment.isOwner?%>
+					<td><% 	if !(assignment.user.nil?) %>
+							<%= assignment.user.fName.strip + " " + assignment.user.lName.strip %>
+						<%	else %>
+							<%= "MISSING USER" %>
+						<% end	%>
+					</td>
+				<% else %>
+					<% if assigned_to.length > 1 %>
+						<% assigned_to = assigned_to + ", " %>
+					<% end %>
+					<% if !assignment.user.nil? %>
+						<% assigned_to = assigned_to + assignment.user.fName.strip + " " + assignment.user.lName.strip %>
+					<% else %>
+						<% assigned_to = assigned_to + "Broke" %>
+					<% end %>
+				<% end %>
+			<% end %>
+						<td><%= truncate(ticket.subject, :length => 50, :separator => ' ') %></td>
+						<td><%= ticket.created_at.strftime('%b %d, %Y  %H:%M') %></td>
+						<td><%= assigned_to %></td>
+						<% 	if !(ticket.status.name.nil?) %>
+							<td class="status-<%=  ticket.status.name.downcase.gsub(' ', '-') %>"><%= ticket.status.name %></td>
+						<%	else %>
+							<td class="status-MISSING">MISSING STATUS</td>
+						<%	end %>
+						<% 	if !(ticket.department.nil?) %>
+							<td><%= ticket.department.name %></td>
+						<%	else %>
+							<td>MISSING DEPARTMENT</td>
+						<%	end %>
+					</tr>
+				
+			
+		<% end %>
+	</tbody>
+</table>
+<div id="pager" class="pager"> <%= paginate @tickets %> </div>

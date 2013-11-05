@@ -1,0 +1,9 @@
+ActionMailer::Base.smtp_settings = {
+  :address              => "smtp.gmail.com",
+  :port                 => 587,
+  :domain               => "gnxmedia.com",
+  :user_name            => "bholdman@gmail.com",
+  :password             => "sbV818436572",
+  :authentication       => "plain",
+  :enable_starttls_auto => true
+}

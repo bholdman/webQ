@@ -1,0 +1,38 @@
+<%= form_for @tickets, :html => {:name => 'status'}, :remote => true  do |f| %>
+	<table class="tablesorter parent_ticket"> 
+		<tbody><tr>
+			<th style="background-color:#464039">Client</th><td><%= link_to "#{@users.fName} #{@users.lName}", user_path(@users) %></td>
+			<th style="background-color:#464039">Status</th><td><div class="meta_form">
+				<% if admin? %>
+					<%= collection_select("ticket", "status_id", @statuses, :id, :name, {:selected => @tickets.status_id}, :onchange => ("$(this).closest('form').submit()")) %>
+				<% else %>
+					<%= @tickets.status.name %>
+				<% end %>
+		</div></td>
+		</tr>
+		<tr>
+			<th style="background-color:#464039">Email</th><td><a href="mailto:<%= @users.seKey %>@semo.edu"><%= @users.seKey %>@semo.edu</a></td>
+			<th style="background-color:#464039">Created</th><td><%= @tickets.created_at.to_formatted_s(:long_ordinal) %></td>
+		</tr>
+		<tr>
+			<th style="background-color:#464039">Assigned To</th><td>
+				<% if admin? %>
+					<%= f.text_field :user_tokens, "data-pre" => @tickets.users.where("isAdmin = 1").select(['user_id', 'CONCAT_WS(" ", fName, lName ) as name']).map(&:attributes).to_json, :onchange => ("$(this).closest('form').submit()") %>
+				<% else %>
+					<% assign = @tickets.users.where("isAdmin = 1").select(['user_id', 'CONCAT_WS(" ", fName, lName ) as name']) %>
+					<% assign.each do |user| %>
+						<%= user.name + ", " %>
+					<% end %>
+				<% end %>
+			</td>
+
+				<th style="background-color:#464039">Related Pages</th><td> <%= link_to @tickets.url, @tickets.url, :target => "_blank" %></td>
+
+		</tr>
+		</tbody>
+	</table>
+	<p>
+		<!--<%= f.submit "Update Ticket", :class => "update_ticket" %>-->
+	</p>
+<% end %>
+

@@ -1,0 +1,14 @@
+	<%= form_tag( login_path, {:id => "formLogin", :name => "formLogin"}) do %>
+  <%= text_field_tag "username" %>
+  <%= password_field_tag "password" %>
+  <br />
+  <div id="remember">
+  <%= label_tag :remember_me %>
+  <%= check_box_tag :remember_me, 1, params[:remember_me] %>
+  </div>
+  <br />
+  <ul class="uibutton-group">
+       <li>
+             <%= submit_tag "Login", :class => "uibutton normal", :id => "but_login" %>
+  </li></ul>
+<% end %>

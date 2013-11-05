@@ -1,0 +1,25 @@
+<h1>Create a New Ticket</h1>
+<%= nested_form_for @ticket, :html=>{:multipart => true } do |f| %>
+  <p>
+    <%= f.label :subject %>
+    <%= f.text_field :subject, :class => "text" %>
+  </p>
+  <p>
+    <%= f.label :url, 'Address or PageID ' %><span>(www.semo.edu/admissions/new.htm or 33496)</span>
+    <%= f.text_field :url, :class => "text" %>
+  </p>
+  <p>
+    <%= f.label :body %>
+    <%= f.text_area :body %>
+  </p>
+  <%= f.fields_for :attachments do |attachment_form|  %>
+    <p>
+    <%= attachment_form.file_field :file %><%= attachment_form.link_to_remove image_tag "cancel.png", :alt => "Remove"	%>
+    </p>
+    
+  <% end %>
+  <%= f.link_to_add "Add attachment", :attachments %>
+  <p>
+    <%= f.submit :class => "submit" %>
+  </p>
+<% end %>

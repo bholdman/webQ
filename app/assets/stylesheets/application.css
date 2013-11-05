@@ -1,0 +1,598 @@
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib../assets/stylesheets, vendor../assets/stylesheets,
+ * or vendor../assets/stylesheets of plugins, if any, can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the top of the
+ * compiled file, but it's generally better to create a new file per style scope.
+ *
+ *= require_self
+ *= require_directory .
+ *= require 'css3-progress-bar'
+ */
+body {
+background: whitesmoke url(../assets/side_bg.png) -12px 0 repeat-y;
+color: #121212;
+font: 13px/22px Arial, serif;
+margin: 0;
+padding: 0 0 0px;
+}
+
+
+.flash_notice, .flash_message, .flash_warning, .flash_error {
+  border: 1px solid;
+  margin: 10px 0px;
+  padding:15px 10px 15px 50px;
+  background-repeat: no-repeat;
+  background-position: 10px center;
+}
+.flash_notice {
+  color: #00529B;
+  background-color: #BDE5F8;
+  background-image: url('../assets/info.png');
+}
+.flash_message {
+  color: #00529B;
+  background-color: #BDE5F8;
+  background-image: url('../assets/info.png');
+}
+.flash_warning {
+  color: #9F6000;
+  background-color: #FEEFB3;
+  background-image: url('../assets/warning.png');
+}
+.flash_error {
+  color: #D8000C;
+  background-color: #FFBABA;
+  background-image: url('../assets/error.png');
+}
+
+#sidebar {
+position: absolute;
+top: 50px;
+left: 0;
+width: 238px;
+height: 100%;
+}
+
+#content {
+display: block;
+margin: 70px 20px 0 260px;
+width: auto;
+}
+
+#header {
+width: 100%;
+top: 0;
+height: 45px;
+background: black url(../assets/top_bgrepeat.jpg) repeat-x;
+color: white;
+position: fixed;
+z-index: 49;
+-moz-box-shadow: 0px 2px 15px #333333;
+-webkit-box-shadow: 0px 2px 15px #333;
+box-shadow: 0px 2px 15px #333;
+filter: "progid: DXImageTransform.Microsoft.Shadow(strength = 5, direction = 180, color = '#999999')";
+-ms-filter: "progid: DXImageTransform.Microsoft.Shadow(strength = 5, Direction = 180, Color = '#aaaaaa')";
+overflow: visible;
+}
+
+
+#header #account_info {
+margin: 0 35px 0 0;
+vertical-align: top;
+text-align: right;
+width: 100%;
+overflow: visible;
+}
+
+#header #account_info img {
+margin: 5px;
+border-radius: 5px;
+}
+
+#header #account_info div {
+border-left: 1px #333 solid;
+padding: 0 10px 0 20px;
+background-image: url(../assets/account_bg.png);
+cursor: pointer;
+display: inline-block;
+height: 45px;
+line-height: 47px;
+background-repeat: no-repeat;
+vertical-align: top;
+}
+
+#header #account_info div:last-child {
+border-left: 1px #333 solid;
+padding: 0 15px 0 0px;
+height: 50px;
+margin-top: -5px;
+line-height: 56px;
+}
+
+#header #account_info div .red a {
+color: red;
+}
+
+
+#header #account_info .logout {
+width: 65px;
+background-position-y: 5px;
+}
+
+#header #account_info .logout:hover {
+width: 65px;
+background-position-y: 5px;
+}
+
+#header #account_info .logout a:visited{
+	color: white;
+}
+
+#header #account_info .logout a{
+	color: white;
+}
+
+/* Table */
+table.tablesorter {
+	font-size: 12px;
+	width: 100% !important;
+}
+
+table.tablesorter th, .greener {
+	background-color: #b30000;
+	border: 1px solid #191814;
+	-moz-border-radius: 3px;
+	-webkit-border-radius: 3px;
+	padding: 4px;
+	color: #fff;
+}
+
+table.tablesorter th:hover, .greener:hover {
+	background-color: #840000;
+}
+
+table.tablesorter tr .header {
+	cursor: pointer;
+}
+
+table.tablesorter td {
+	padding: 4px;
+	background-color: #fff;
+	vertical-align: top;
+}
+
+table.tablesorter tr.odd td {
+	background-color: #f1f1f1;
+}
+
+
+table.tablesorter tr .headerSortDown, table.tablesorter tr .headerSortUp {
+background-color: #840000;
+text-decoration: underline;
+}
+
+.pager {
+margin: 20px auto;
+text-align: center;
+width: 400px;
+}
+
+table.tablesorter tr:hover { background: #FCF; cursor: pointer;}
+
+h1, h2 {
+margin: 0 0 25px 0;
+color: #121212;
+font-size: 30px;
+font-weight: 100;
+}
+
+a {
+outline: none;
+text-decoration: none;
+color: black;
+font-weight: bold;
+}
+
+#content a, .pager span, #header span a {
+
+}
+
+#logo {
+width: 200px;
+height: 100px;
+text-align: center;
+text-indent: -9999px;
+display: block;
+margin: 10px auto;
+border: 10px solid white;
+-moz-border-radius: 10px;
+-webkit-border-radius: 10px;
+background: url(../assets/logo.jpg) top center no-repeat;
+}
+
+#menu {
+width: 224px;
+float: right;
+}
+
+#nav {
+width: 216px;
+padding: 0 0 0 8px;
+font-family: Arial, sans-serif;
+}
+
+#nav li {
+list-style: none;
+padding-bottom: 5px;
+text-align: right;
+}
+
+#nav li a {
+background: transparent url('../assets/menu_bg.png') bottom left no-repeat;
+padding: 0 16px;
+line-height: 38px;
+color: white;
+font-size: 15px;
+cursor: pointer;
+display: block;
+text-decoration: none;
+font-weight: bold;
+}
+
+.tablesorter th a { color: white; font-weight: bold; bottom-border: 0px;}
+
+/* Status Styles */
+.status-new {
+font-weight: bold;
+background: #e69797 !important;
+text-align:center;
+}
+
+.status-open {
+font-weight: bold;
+background: #fac7c7 !important;
+color: #3D0707;
+text-align:center;
+}
+
+.status-in-progress {
+font-weight: bold;
+background: #fcfbc9 !important;
+color: #3D0707;
+text-align:center;
+}
+
+.status-awaiting-response {
+font-weight: bold;
+background: #C9D7FC !important;
+color: #133ba0;
+text-align:center;
+}
+
+.status-resolved {
+font-weight: bold;
+background: #c8fac7 !important;
+color: #59AB57;
+text-align:center;
+}
+
+.status-exempt {
+font-weight: bold;
+background: #c8fac7 !important;
+color: #cc0000;
+text-align:center;
+}
+
+.create_button {
+	-moz-box-shadow:inset 0px 1px 0px 0px #a4e271;
+	-webkit-box-shadow:inset 0px 1px 0px 0px #a4e271;
+	box-shadow:inset 0px 1px 0px 0px #a4e271;
+	background-color:#89c403;
+	-moz-border-radius:6px;
+	-webkit-border-radius:6px;
+	border-radius:6px;
+	border:1px solid #74b807;
+	display:inline-block;
+	color:#ffffff;
+	font-family:arial;
+	font-size:15px;
+	font-weight:bold;
+	padding:10px 40px;
+	text-decoration:none;
+	text-shadow:1px 1px 0px #528009;
+	margin-bottom: 20px;
+}.create_button:hover {
+	background-color:#77a809;
+}.create_button:active {
+	position:relative;
+	top:1px;
+}
+
+label {
+margin: 20px 0 0;
+width: 96%;
+display: block;
+font-size: 15px;
+font-weight: bold;
+}
+
+.text {
+width: 96%;
+padding: 4px;
+font-size: 18px;
+background: white;
+border: 1px solid #DDD;
+}
+
+ textarea {
+width: 96%;
+padding: 4px;
+height: 160px;
+font: 15px/20px Arial, serif;
+background: white;
+border: 1px solid #DDD;
+}
+
+ textarea,  .text,  .dropdown {
+-moz-box-shadow: 1px 2px 3px #e5e5e5;
+box-shadow: 1px 2px 3px #E5E5E5;
+-webkit-box-shadow: 1px 2px 3px #E5E5E5;
+}
+
+.submit:hover {
+background-position: center right;
+cursor: pointer;
+}
+
+.submit {
+font-size: 14px;
+color: white;
+font-weight: bold;
+background: #121212 url(../assets/menu_bg.gif) bottom right repeat-y;
+border: 3px solid #888;
+-moz-border-radius: 4px;
+-webkit-border-radius: 4px;
+margin: 0 0 0 32px;
+vertical-align: bottom;
+padding: 7px 12px;
+}
+
+.parent_ticket, .parent_message {
+margin: 0 0 15px;
+background: #FAFAFA;
+border: 1px solid #DDD;
+width: 95%;
+min-height: 120px;
+}
+
+tbody {
+display: table-row-group;
+vertical-align: middle;
+border-color: inherit;
+}
+
+tr {
+display: table-row;
+vertical-align: inherit;
+border-color: inherit;
+}
+
+table.tablesorter th, .greener {
+background-color: #B30000;
+border: 1px solid #191814;
+-moz-border-radius: 3px;
+-webkit-border-radius: 3px;
+padding: 4px;
+color: white;
+}
+
+.parent_ticket th {
+background-color: #9A9BA0;
+width: 160px;
+text-align: right;
+}
+
+table.tablesorter td {
+padding: 4px;
+background-color: white;
+vertical-align: top;
+}
+
+.parent_ticket td {
+width: 256px;
+text-align: left;
+}
+
+i, cite, em, var, address, dfn {
+font-style: italic;
+}
+
+.parent_message {
+border: 1px solid #BEC2C8;
+-webkit-border-radius: 2px 2px 0 0;
+-webkit-box-shadow: 0 0 3px rgba(0, 0, 0, 0.15), 0 4px 0 -3px white, 0 4px 0 -2px #BEC2C8, 0 8px 0 -5px white, 0 8px 0 -4px #BEC2C8;
+padding-bottom: 15px;
+padding-left: 20px;
+padding-right: 20px;
+-webkit-box-shadow: 0 0 3px rgba(0, 0, 0, 0.15), 0 4px 0 -3px white, 0 4px 0 -2px #BEC2C8, 0 8px 0 -5px white, 0 8px 0 -4px #BEC2C8;
+-moz-box-shadow: 0 0 3px rgba(0,0,0,0.15), 0 4px 0 -3px #fff, 0 4px 0 -2px #bec2c8, 0 8px 0 -5px #fff, 0 8px 0 -4px #bec2c8;
+box-shadow: 0 0 3px rgba(0, 0, 0, 0.15), 0 4px 0 -3px white, 0 4px 0 -2px #BEC2C8, 0 8px 0 -5px white, 0 8px 0 -4px #BEC2C8;
+color: #525459;
+}
+
+.parent_message h3 span {
+font: 13px/18px "Palatino Linotype", Palatino, Georgia, Times;
+}
+
+.parent_message h3 {
+color: black;
+}
+
+h3, h4 {
+margin: 20px 0 10px 20px;
+font-size: 20px;
+color: #343434;
+font-weight: 100;
+}
+
+.parent_message img {
+float: left;
+margin: 20px 20px 0px 0px;
+}
+
+fieldset, img {
+border: 0;
+}
+
+.bar_container {
+	width: 74px;
+	margin-top: 2px;
+}
+
+.progress{
+
+}
+
+.thanks {
+	float: left;
+	margin-left: -2px;
+	margin-top: 2px;
+}
+
+.thanks p {
+	font-size: 10px;
+	color: #000;
+	font-weight: bold;
+	padding-top: 0px;
+	margin-top: 0px;
+	line-height: 10px;
+}
+
+.thanks_form input[type="submit"] {
+	font-size: 10px;
+	color: white;
+	font-weight: bold;
+	background: #121212 url(../assets/menu_bg.gif) bottom right repeat-y;
+	border: 1px solid #888;
+	-moz-border-radius: 4px;
+	-webkit-border-radius: 4px;
+	vertical-align: bottom;
+	padding: 7px 4px;
+	min-width: 84px;
+}
+
+.message_body {
+	padding-left: 100px;
+}
+
+.blue {
+background: #AAFF00 !important;
+background: -moz-linear-gradient(top, #AAFF00 0%, #8c0 100%) !important;
+background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#AAFF00), color-stop(100%,#8c0)) !important;
+background: -webkit-linear-gradient(top, #AAFF00 0%,#8c0 100%) !important;
+background: -o-linear-gradient(top, #AAFF00 0%,#8c0 100%) !important;
+background: -ms-linear-gradient(top, #AAFF00 0%,#8c0 100%) !important;
+background: linear-gradient(top, #AAFF00 0%,#8c0 100%) !important;
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#AAFF00', endColorstr='#8c0',GradientType=0 ) !important;
+border-top: 1px solid #e8ffbb !important;
+border-bottom: 1px solid #690 !important;
+}
+
+.message_admin {
+background: #FAC7C7;
+border: 1px solid #6992AB;
+min-height: 165px;
+}
+
+#content h3 { margin: 0px 0px 10px 0px;}
+
+.parent_message h3 {margin: 13px 0 10px 0px !important;}
+
+.ui-accordion-header.ui-helper-reset.ui-state-active.ui-corner-top{
+	margin: 0px !important;
+}
+
+.ui-accordion-content.ui-helper-reset.ui-widget-content.ui-corner-bottom.ui-accordion-content-active {
+overflow: hidden;
+}
+
+.ui-accordion {
+width: 98% !important; 
+}
+
+#new_user {
+	width: 50%;
+}
+
+
+#user_fName, #user_lName, #user_seKey{
+	width: 250px;
+}
+
+#result {
+line-height: 14px;
+}
+
+ul.input-list {
+list-style-type: none;
+}
+
+ul.input-list {
+overflow: hidden;
+height: auto !important;
+height: 1%;
+cursor: text;
+min-height: 1px;
+z-index: 999;
+margin: 0;
+width: 92%;
+padding: 3px;
+font-size: 18px;
+background: white;
+border: 1px solid #DDD;
+-moz-border-radius: 2px;
+-webkit-border-radius: 2px;
+}
+
+li.input-token {
+overflow: hidden;
+height: auto !important;
+height: 1%;
+margin: 1px;
+padding: 1px 6px;
+background-color: #F8F8F8;
+color: black;
+cursor: default;
+border: 1px solid #CCC;
+font-size: 11px;
+-moz-border-radius: 2px;
+-webkit-border-radius: 2px;
+float: left;
+}
+
+li.input-token p {
+display: inline;
+padding: 0;
+margin: 0;
+}
+
+li.input-token span {
+color: #777;
+margin-left: 5px;
+font-weight: bold;
+cursor: pointer;
+}
+
+ul.input-list li input {
+border: 0;
+width: 100px;
+padding: 1px 8px;
+background-color: white;
+margin: 1px 0;
+}
+
+.ui-accordion .ui-accordion-content{ overflow:hidden !important; }

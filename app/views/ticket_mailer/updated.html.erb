@@ -1,0 +1,54 @@
+
+
+<html>
+	<head>
+		<style type="text/css">
+		body {
+		background: #eeeeee;
+		margin: 0;
+		padding: 20px 0;
+		color: #000000;
+		font-family: Arial, sans-serif;
+		font-size: small;
+		}
+		table {
+		padding: 10px;
+		width: 550px;
+		background: white;
+		border: 3px solid #eeeeee;
+		}
+		td {
+		line-height: 18px;
+		}
+		</style>
+	</head>
+	<body bgcolor="#eeeeee">
+	 <center>
+	  <table bgcolor="white" width="550">
+	    <tr>
+	      <td>
+	        <img src="http://wds.semo.edu/help/img/logo.jpg" />
+		   </td>
+		   </tr>
+		   <tr>
+		     <td>
+	  		  Hello <%= @ticket.users.first.fName %>,
+<br />
+<br />This support ticket has been updated.
+<br />
+<br />To view the status of this ticket in the Web Queue, you may click this link: 
+<br /><%= link_to @ticket.subject, ticket_url(@ticket, :host =>"wdsprod.semo.edu/help") %>
+<br />
+<br />Thanks,
+<br />
+<br />The Office of Web Design & Support
+<br /><small><a href="http://wds.semo.edu/help/">The Web Queue</a></small>
+<br />
+<br />Please do not reply to this email. It is sent from an account that isn't monitored.
+	  		 </td>
+		    </tr>
+		  </table>
+		 </center>
+		</body>
+		</html>
+	  

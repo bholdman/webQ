@@ -1,0 +1,17 @@
+<h3>Ticket <%= "#%06d" % @tickets.id %></h3>
+<h2><%= @tickets.subject %></h2>
+<div id="status_form">
+<%= render :partial => 'status_form' %>
+</div>
+
+<%= render :partial => 'reply_form' %>
+
+<%= render :partial => 'response', :collection => @tickets.responses.reverse %>
+<div class="parent_message">
+	<%= image_tag avatar_url(@users.seKey) %>
+	<h3><span><em>Posted by</em> <%= "#{@users.fName} #{@users.lName}" %>, <em>  <%= @tickets.created_at.to_formatted_s(:long_ordinal) %></em></span></h3>
+	<%= @tickets.body %>
+</div>
+<div id="reply_form">
+
+</div>

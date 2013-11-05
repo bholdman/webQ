@@ -1,0 +1,14 @@
+<h2>All Tickets</h2>
+<div> <%=  link_to "Create Ticket", new_ticket_path, :class => "create_button" %></div>
+<%= form_tag tickets_path, :method => 'get', :id => "tickets_search" do %>
+	<p>
+		<%= text_field_tag :search, params[:search] %>
+		<%= submit_tag "Search", :name => nil %> <br>
+		<%= link_to "Clear search", tickets_path %>
+	</p>
+	
+	<div id="tickets"><%= render 'tickets' %> </div>
+<% end %>
+
+
+

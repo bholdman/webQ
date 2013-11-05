@@ -1,0 +1,52 @@
+<script language="javascript" type="text/javascript">
+
+function addtext() {
+
+	var quick_text=document.getElementById("quick_text");
+	document.getElementById("body_text").value += quick_text.options[quick_text.selectedIndex].text;
+
+}
+
+</script>
+
+<script>
+    $(function() {
+        $( "#accordion" ).accordion({
+            autoHeight: "true"
+        });
+    });
+    </script>
+
+<div id="accordion">
+	<h3><a href="#">Submit a Response</a></h3>
+	<div style="height:auto !important">
+		<%= nested_form_for @response, :html => { :name => "new_response", :multipart => true  } do |f| %>
+
+			<% if admin? %>
+			<select id="quick_text" onchange="addtext()">
+				<option value="Quick Text">Quick Text</option>
+				<option value="test1">Test 1</option>
+				<option value="test2">Test 2</option>
+				<option value="test3">Test 3</option>
+				<option value="test4">Test 4</option>
+			</select>
+			<% end %>
+			<%= f.hidden_field :ticket_id %>
+			<%= f.label :response %><br/>
+			<%= f.text_area :body, :id => 'body_text' %>
+
+		  <p>
+		   <%= f.fields_for :attachments do |attachment_form|  %>
+    <p>
+    <%= attachment_form.file_field :file %><%= attachment_form.link_to_remove image_tag "cancel.png", :alt => "Remove"	%>
+    </p>
+    
+  <% end %>
+  <%= f.link_to_add "Add attachment", :attachments %>
+  </p>
+		  <p>
+			<%= f.submit "Submit Response", :class => "submit" %>
+		  </p>
+		<% end %>
+	</div>
+</div>

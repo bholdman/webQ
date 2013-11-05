@@ -1,0 +1,31 @@
+<h3>Ticket <%= "#%06d" % @tickets.id %></h3>
+<h2><%= @tickets.subject %></h2>
+<div id="status_form">
+<%= render :partial => 'status_form' %>
+</div>
+
+<% if !(@tickets.status.name == 'Resolved') %>
+	<%= render :partial => 'reply_form' %>
+<% end %>	
+
+<%= render :partial => 'response', :collection => @tickets.responses.reverse %>
+<div class="parent_message">
+	<%= image_tag avatar_url(@users.seKey) %>
+	<div class="message_body"><h3><span><em>Posted by</em> <%= "#{@users.fName} #{@users.lName}" %>, <em>  <%= @tickets.created_at.to_formatted_s(:long_ordinal) %></em></span></h3>
+	<% message_body = simple_format h  @tickets.body %>
+	<%= auto_link(message_body) %>
+	<% if !(@attachments.first.nil?) %>
+		<p style="font-weight:bold; color:black">Attachments:</p>
+	<% end %>	
+		<% @attachments = Attachment.find_all_by_attachable_id(@tickets.id) %>
+		<% if !(@attachments.first.nil?) %>
+			<% @attachments.each do |attachment| %>
+				<%= link_to File.basename(attachment.file.url) , attachment.file.url %> <br />
+			 <% end %>
+		<% end %>
+	</div>
+
+</div>
+<div id="reply_form">
+
+</div>

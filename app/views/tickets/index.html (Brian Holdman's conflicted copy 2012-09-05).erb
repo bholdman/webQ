@@ -1,0 +1,35 @@
+<h2>All Tickets</h2>
+<% flash.each do |name, msg| %>
+  <%= content_tag :div, msg, :class => "flash_#{name}" %>
+<% end %>
+<table id="ticket_list" class="tablesorter"> 
+	<thead> 
+		<tr> 
+			<th><%= sortable "id", "ID" %></th> 
+			<th><%= sortable "user_id", "User" %></th> 
+			<th style="min-width:238px;"><%= sortable "subject", "Subject" %></th> 
+			<th><%= sortable "created_at", "Created" %></th>
+			<th>Assigned to</th> 
+			<th><%= sortable "status", "Status" %></th> 
+			<th><%= sortable "department_id", "Department" %></th> 
+		</tr> 
+	</thead> 
+	<tbody> 
+		<% @tickets.each do |ticket| %>
+		<tr class="<%= cycle("even", "odd") %>" onclick="location.href='<%= ticket_path(ticket) %>'">
+			<td style="text-align:center;"><%= link_to "#%06d" % ticket.id, ticket_path(ticket) %></td>
+			<td><% 	if !(ticket.user.nil?) %>
+					<%= ticket.user.fName.strip + " " + ticket.user.lName.strip %>
+				<%	else %>
+					<%= "MISSING USER" %>
+					<% end	%></td>
+			<td><%= truncate(ticket.subject, :length => 50, :separator => ' ') %></td>
+			<td><%= ticket.created_at %></td>
+			<td><span></span></td>
+			<td class="status-<%=  ticket.status.name.downcase %>"><%= ticket.status.name %></td>
+			<td><%= ticket.department.name %></td>
+		</tr>
+		<% end %>
+	</tbody>
+</table>
+<div id="pager" class="pager"> <%= paginate @tickets %> </div>

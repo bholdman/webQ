@@ -1,0 +1,26 @@
+ <h2><%= @users.fName.strip + "'s Tickets" %></h2>
+	<table id="ticket_list" class="tablesorter"> 
+		<thead> 
+			<tr> 
+				<th>ID</th> 
+				<th style="min-width:238px;">Subject</th> 
+				<th>Created</th>
+				<th>Assigned to</th> 
+				<th>Status</th> 
+				<th>Department</th> 
+			</tr> 
+		</thead> 
+		<tbody> 
+			<% @tickets.each do |ticket| %>
+			<tr class="<%= cycle("even", "odd") %>" onclick="location.href='<%= ticket_path(ticket) %>'">
+				<td style="text-align:center;"><%= link_to "#%06d" % ticket.id, ticket_path(ticket) %></td>
+				<td><%= truncate(ticket.subject, :length => 50, :separator => ' ') %></td>
+				<td><%= ticket.created_at %></td>
+				<td><span></span></td>
+				<td class="status-<%=  ticket.status.name.downcase.gsub(' ', '-') %>"><%= ticket.status.name %></td>
+				<td><%= ticket.department.name %></td>
+			</tr>
+			<% end %>
+		</tbody>
+	</table>
+  
