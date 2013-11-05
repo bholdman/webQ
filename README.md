@@ -1,4 +1,0 @@
-webQ
-====
-
-Web ticketing system
