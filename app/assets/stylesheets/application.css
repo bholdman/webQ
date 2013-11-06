@@ -21,7 +21,7 @@ padding: 0 0 0px;
 }
 
 
-.flash_notice, .flash_message, .flash_warning, .flash_error {
+.flash_notice, .flash_message, .flash_warning, .flash_error, .flash_success {
   border: 1px solid;
   margin: 10px 0px;
   padding:15px 10px 15px 50px;
@@ -529,8 +529,12 @@ width: 98% !important;
 }
 
 
-#user_fName, #user_lName, #user_seKey{
+#user_fName, #user_lName, #user_seKey, #department_name, #department_prefix{
 	width: 250px;
+}
+
+#department_prefix{
+	width: 130px;
 }
 
 #result {

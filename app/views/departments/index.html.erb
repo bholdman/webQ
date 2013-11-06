@@ -1,13 +1,24 @@
-<div id="accordion" class="ui-accordion ui-widget ui-helper-reset" role="tablist">
-	<% @departments.each do |department| %>
-		<h3 class="dep-<%= department.id %> ui-accordion-header ui-helper-reset ui-state-default ui-corner-all" role="tab" aria-expanded="true" tabindex="0" aria-selected="true"><span class="ui-icon ui-icon-triangle-1-e"></span><span class="ui-icon ui-icon-triangle-1-e"></span><a href="#" tabindex="-1"><%= department.name %> </a></h3>
-		<div class="dep-<%= department.id %>  ui-accordion-content ui-helper-reset ui-widget-content ui-corner-bottom ui-accordion-content-active" style="height: 130px; " role="tabpanel">
-		 <p class="dep-<%= department.id %> ">
-		 <ul><% department.users.each do |user| %>
-			
-			<li><%= link_to "#{user.fName} #{user.lName}", user_path(user) %></li>
-		 <% end %></ul>
-		 <br><small class="meta"><a onclick="edit_department('113','Academic Advising Business','','')">Edit</a> <a onclick="delete_department('113','Academic Advising Business')" style="color:red;">Delete</a></small>
-		 </p>
-		</div>
-	<% end %>
+<h2>All Departments</h2>
+<div> <%=  link_to "Create Department", new_department_path, :class => "create_button" %></div>
+<table id="dept_list" class="tablesorter"> 
+	<thead> 
+		<tr> 
+			<th><%= sortable "id",  "Dept ID" %></th> 
+			<th><%= sortable "name", "Department Name" %></th> 
+			<th><%= sortable "prefix", "Prefix" %></th> 
+			<th><%= sortable "count_users", "Total Users" %></th>
+			<th><%= sortable "count_tickets", "Total Tickets" %></th>
+		</tr> 
+	</thead> 
+	<tbody> 
+		<% @departments.each do |department| %>
+		<tr class="<%= cycle("even", "odd") %>" onclick="location.href='<%= department_path(department) %>'">
+			<td style="text-align:center;"><%= link_to department.id, department_path(department) %></td>
+			<td><%= "#{department.name}" %></td>
+			<td><%= department.prefix %></td>
+			<td><%= department.users.count %></td>
+			<td><%= department.tickets.count %></td>
+		</tr>
+		<% end %>
+	</tbody>
+</table>

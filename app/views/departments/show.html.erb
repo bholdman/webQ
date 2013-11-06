@@ -1,0 +1,95 @@
+<script>
+  $(function() {
+    $( "#tabs" ).tabs();
+  });
+  </script>
+<h2><%= @departments.name %></h2>	
+<% if admin? %>
+	<%= form_for(@departments) do |f| %>
+	  <p>
+	    <%= f.label :name, 'Department Name' %>
+	    <%= f.text_field :name, :class => "text" %>
+	  </p>
+		<p>
+	    <%= f.label :prefix, 'Department prefix' %>
+	    <%= f.text_field :prefix, :class => "text" %>
+	  </p>
+	  <p>
+		<%= f.submit :class => "submit" %>
+	  </p>
+	<% end %>
+	<div id="tabs">
+	  <ul>
+	    <li><a href="#tabs-1">Users</a></li>
+	    <li><a href="#tabs-2">Tickets</a></li>
+	  </ul>
+	  <div id="tabs-1">
+	    <table id="client_list" class="tablesorter"> 
+			<thead> 
+				<tr> 
+					<th><%= sortable "id",  "User ID" %></th> 
+					<th><%= sortable "fName", "Name" %></th> 
+					<th><%= sortable "seKey", "Username" %></th> 
+					<th><%= sortable "isAdmin", "User Type" %></th>
+				</tr> 
+			</thead> 
+			<tbody> 
+				<% @users.each do |user| %>
+				<tr class="<%= cycle("even", "odd") %>" onclick="location.href='<%= user_path(user) %>'">
+					<td style="text-align:center;"><%= link_to user.id, user_path(user) %></td>
+					<td><%= "#{user.fName} #{user.lName}" %></td>
+					<td><%= user.seKey.downcase %></td>
+					<td><%= user.isAdmin ? "Administrator" : "User" %></td>
+				</tr>
+				<% end %>
+			</tbody>
+		</table>
+	  </div>
+	  <div id="tabs-2">
+	    <table id="ticket_list" class="tablesorter"> 
+			<thead> 
+				<tr> 
+					<th>ID</th> 
+					<th>User</th> 
+					<th style="min-width:238px;">Subject</th> 
+					<th>Created</th>
+					<th>Assigned to</th> 
+					<th>Status</th>
+				</tr> 
+			</thead> 
+			<tbody> 
+				<% assigned_to = "" %>
+				<% @tickets.each do |ticket| %>
+				<tr class="<%= cycle("even", "odd") %>" onclick="location.href='<%= ticket_path(ticket) %>'">
+					<td style="text-align:center;"><%= link_to "#%06d" % ticket.id, ticket_path(ticket) %></td>
+					<% ticket.assignments.each do |assignment| %>
+				<% if assignment.isOwner?%>
+					<td><% 	if !(assignment.user.nil?) %>
+							<%= assignment.user.fName.strip + " " + assignment.user.lName.strip %>
+						<%	else %>
+							<%= "MISSING USER" %>
+						<% end	%>
+					</td>
+				<% else %>
+					<% if assigned_to.length > 1 %>
+						<% assigned_to = assigned_to + ", " %>
+					<% end %>
+					<% if !assignment.user.nil? %>
+						<% assigned_to = assigned_to + assignment.user.fName.strip + " " + assignment.user.lName.strip %>
+					<% else %>
+						<% assigned_to = assigned_to + "Broke" %>
+					<% end %>
+				<% end %>
+			<% end %>
+					<td><%= truncate(ticket.subject, :length => 50, :separator => ' ') %></td>
+					<td><%= ticket.created_at %></td>
+					<td><span></span></td>
+					<td class="status-<%=  ticket.status.name.downcase.gsub(' ', '-') %>"><%= ticket.status.name %></td>
+				</tr>
+				<% end %>
+			</tbody>
+		</table>
+  
+	  </div>
+	</div>
+<% end %>

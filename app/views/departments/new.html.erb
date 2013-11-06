@@ -1,0 +1,14 @@
+<h1>Create a New Department</h1>
+<%= form_for(@departments) do |f| %>
+  <p>
+    <%= f.label :name, 'Department Name' %>
+    <%= f.text_field :name, :class => "text" %>
+  </p>
+	<p>
+    <%= f.label :prefix, 'Department prefix' %>
+    <%= f.text_field :prefix, :class => "text" %>
+  </p>
+  <p>
+    <%= f.submit :class => "submit" %>
+  </p>
+<% end %>
