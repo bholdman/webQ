@@ -23,7 +23,7 @@ class UsersController < ApplicationController
 	end
 	
 	def show
-		
+		@departments = Department.order('name')
 		@users = User.find_by_seKey(params[:id])
 		if admin? or @users.seKey == session[:username]
 			@tickets = User.find_by_seKey(params[:id]).tickets.where('isOwner = 1').order('status_id asc')
@@ -35,14 +35,13 @@ class UsersController < ApplicationController
 	
 	def new
 		@users = User.new
+		@departments = Department.order('name')
 	end
 	
 	def create
-	
 		@users = User.new(params[:user])
-		@users.department_id = 0
 		@users.save
-		redirect_to user_path(@users)
+		redirect_to department_path(@departments)
 	end
 	
 	def become()
@@ -54,8 +53,7 @@ class UsersController < ApplicationController
 	end
 	
 	def update
-	  @myUser = User.find_by_seKey(params[:seKey])
-	  @myUser = User.find(@myUser.id)
+	  @myUser = User.find_by_seKey(params[:id])
 	  if @myUser.update_attributes(params[:user])
 		flash[:success] = "Profile updated."
 		redirect_to users_url

@@ -1,5 +1,5 @@
 class User < ActiveRecord::Base
-	attr_accessible :lName, :fName, :seKey, :isAdmin
+	attr_accessible :lName, :fName, :seKey, :isAdmin, :department_id
   
 	has_many :assignments
 	belongs_to :departments

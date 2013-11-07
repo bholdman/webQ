@@ -11,6 +11,11 @@
     <%= f.text_field :seKey, :class => "text" %>
   </p>
   <p>
+    <%= f.label :department_id, 'Department' %>
+    <%= collection_select("user", "department_id", @departments, :id, :name) %>
+
+  </p>
+  <p>
     <%= f.label :isAdmin, "Is Admin?" %>
     <%= check_box_tag :isAdmin, 1 %>
   </p>
