@@ -22,7 +22,7 @@ class DepartmentsController < ApplicationController
 	
 		@departments = Department.new(params[:department])
 		@departments.save
-		redirect_to user_path(@departments)
+		redirect_to department_path(@departments)
 	end
 
 	def update

@@ -55,7 +55,7 @@ class UsersController < ApplicationController
 	def update
 	  @myUser = User.find_by_seKey(params[:id])
 	  if @myUser.update_attributes(params[:user])
-		flash[:success] = "Profile updated."
+		flash[:notice] = "Profile updated."
 		redirect_to users_url
 	  else
 		render :action => :edit
