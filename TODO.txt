@@ -1,0 +1,7 @@
+Now:
+
+
+Later:
+Update last accessed field in user model anytime anything happens so that new items can be shown since last visit.
+Can add assigned people but can't delete them.
+Add a settings tab for QuickText and other stuff.
