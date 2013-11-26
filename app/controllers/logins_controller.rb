@@ -18,7 +18,6 @@ class LoginsController < ApplicationController
 		if cookies[:auth_token]
 			@current_user = User.find_by_auth_token(cookies[:auth_token])
 			create_session
-			flash[:warning] = 'We have made some updates to the WebQ. If you experience any problems please email bholdman@semo.edu'
 			flash[:notice] = 'Successfully logged in'
 			redirect_to tickets_path
 		else
@@ -53,7 +52,6 @@ class LoginsController < ApplicationController
 				end
 				
 				create_session
-				flash[:warning] = 'We have made some updates to the WebQ. If you experience any problems please email bholdman@semo.edu'
 				flash[:notice] = 'Successfully logged in'
 				if !session[:return_to].nil?
 					redirect_to session[:return_to]
