@@ -73,7 +73,7 @@ Help::Application.configure do
   :authentication => 'login',
   :enable_starttls_auto => true,
   :user_name => 'bholdman',
-  :password => 'sbV818436572'
+  :password => [mailer_password]
 }
   
   
